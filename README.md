@@ -56,3 +56,6 @@ npm install
 npm run dev
 ```
 L'application sera accessible sur `http://localhost:5173/`.
+
+![FinTrack Pro Dashboard](./assets/dashboard.png)
+![FinTrack Pro Financial Report](./assets/report_preview.png)
