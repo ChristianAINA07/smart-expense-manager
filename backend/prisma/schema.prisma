@@ -1,0 +1,57 @@
+// Configuration de la source de données (PostgreSQL)
+datasource db {
+  provider = "postgresql"
+}
+
+// Configuration du générateur Prisma Client pour TypeScript et NestJS
+generator client {
+  provider     = "prisma-client-js"
+  moduleFormat = "cjs"       // Force le format CommonJS pour la compatibilité avec NestJS
+}
+
+// Modèle Utilisateur (Multi-utilisateurs avec authentification JWT)
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  password     String
+  businessName String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[] // Relation : un utilisateur peut avoir plusieurs transactions
+  budgets      Budget[]      // Relation : un utilisateur peut définir plusieurs budgets
+}
+
+// Définition des types de transaction : REVENU ou DEPENSE
+enum TransactionType {
+  REVENU
+  DEPENSE
+}
+
+// Modèle Transaction (Gestion des entrées et sorties d'argent)
+model Transaction {
+  id          String          @id @default(uuid())
+  userId      String
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        TransactionType
+  amount      Float           // Montant en Ariary
+  category    String          // Exemple : "internet", "carburant", "vente"
+  description String?         // Description optionnelle
+  date        DateTime        @default(now())
+  createdAt   DateTime        @default(now())
+
+  @@index([userId, date])     // Index pour accélérer les calculs de statistiques et business insights
+}
+
+// Modèle Budget (Gestion des limites mensuelles par catégorie)
+model Budget {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category  String
+  amount    Float    // Limite de budget définie
+  month     Int      // Numéro du mois (1 - 12)
+  year      Int      // Année concernée
+  createdAt DateTime @default(now())
+
+  @@unique([userId, category, month, year]) // Unicité : un seul budget par catégorie et par mois
+}
