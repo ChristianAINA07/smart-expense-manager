@@ -66,7 +66,7 @@ L'application sera accessible sur `http://localhost:5173/`.
 ![FinTrack Pro Dashboard](./assets/2_dashboard.png)
 
 ### 3. Rapport Financier Exporté (PDF)
-![FinTrack Pro PDF Report](./assets/3_pdf_report.PNG)
+![FinTrack Pro PDF Report](./assets/3_pdf_report.png)
 
 ### 4. Base de Données Relationnelle (PostgreSQL via pgAdmin)
 ![PostgreSQL Database Architecture](./assets/4_database.PNG)
