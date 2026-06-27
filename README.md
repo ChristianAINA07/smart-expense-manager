@@ -57,5 +57,16 @@ npm run dev
 ```
 L'application sera accessible sur `http://localhost:5173/`.
 
-![FinTrack Pro Dashboard](./assets/dashboard.png)
-![FinTrack Pro Financial Report](./assets/report_preview.png)
+## 📸 Aperçu de l'Application
+
+### 1. Page d'Authentification
+![FinTrack Pro Login](./assets/1_login.png)
+
+### 2. Tableau de Bord Analytique (Vue Complète)
+![FinTrack Pro Dashboard](./assets/2_dashboard.png)
+
+### 3. Rapport Financier Exporté (PDF)
+![FinTrack Pro PDF Report](./assets/3_pdf_report.PNG)
+
+### 4. Base de Données Relationnelle (PostgreSQL via pgAdmin)
+![PostgreSQL Database Architecture](./assets/4_database.PNG)
